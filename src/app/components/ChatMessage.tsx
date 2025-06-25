@@ -4,9 +4,10 @@ type ChatMessageProps = {
     role: 'user' | 'assistant';
     message: string;
     createdAt: string;
+    userEmail?: string;
 }
 
-export default function ChatMessage({ role, message, createdAt }: ChatMessageProps) {
+export default function ChatMessage({ role, message, createdAt, userEmail }: ChatMessageProps) {
     return(
         <div className={`p-2 rounded-4xl relative flex items-center justify-center gap-4 ${role === 'user' ? 'bg-blue-100 flex-row-reverse' : 'bg-gray-100'}`}>
 
@@ -38,7 +39,7 @@ export default function ChatMessage({ role, message, createdAt }: ChatMessagePro
             
             {/* Message content */}
             <div className={`flex-1 p-4 ${role === 'user' ? 'text-right' : 'text-left'}`}>
-                <strong>{role === 'user' ? 'You' : 'myBot'}:</strong> {message}
+                <strong>{role === 'user' ? (userEmail ? userEmail.split('@')[0] : 'You') : 'myBot'}:</strong> {message}
             </div>
         </div>
     )
